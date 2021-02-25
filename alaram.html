@@ -1,0 +1,234 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color:black;
+                background-image:url("https://images.unsplash.com/photo-1531685250784-7569952593d2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80")
+            }
+            .clock{
+                width: 300px;
+                height: 300px;
+                background-color:white;
+                border-radius: 50%;  
+                position: relative;
+                top: 200px;
+                margin-left: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .clock:after{
+                position: absolute;
+                content: '';
+                background-color: black;
+                z-index: 11;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                transform: translate(-50% -50%);
+            }
+            .clock:before{
+                position: absolute;
+                content:'';
+                width: 150px;
+                height: 150px;
+                border: 2px solid aqua;
+                background-color: aqua;
+                border-radius: 50%;
+                box-shadow: 0 1px 4px rgba(0,0,0,.5);
+
+            }
+            .clock .number {
+                --rotaion:0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 5px solid aqua;
+                border-radius: 50%;    
+                text-align: center;
+                transform: rotate(var(--rotation));
+                font-size: 25px;
+                font-weight: bold;
+            }
+            .clock .number1{--rotation:30deg}
+            .clock .number2{--rotation:60deg}
+            .clock .number3{--rotation:90deg}
+            .clock .number4{--rotation:120deg}
+            .clock .number5{--rotation:150deg}
+            .clock .number6{--rotation:180deg}
+            .clock .number7{--rotation:210deg}
+            .clock .number8{--rotation:240deg}
+            .clock .number9{--rotation:270deg}
+            .clock .number10{--rotation:300deg}
+            .clock .number11{--rotation:330deg} 
+
+            .clock .hand{
+                --rotation:0;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                width: 10px;
+                height: 40%;
+                background-color: black;
+                border: 1px solid white;
+                transform-origin: bottom;
+                z-index: 10;
+                transform: translateX(-50%) rotate(calc(var(--rotation)*1deg));
+            }  
+
+            
+            /* .clock .hand.second{
+                width: 3px;
+                height:45%;
+                background-color: red;
+            } */
+            .clock .hand.second{
+                position: absolute;
+                height: 1px;
+                width: 1px;
+                z-index: 5;
+            }
+            .clock .hand.second:before{
+                position: absolute;
+                content: '';
+                height: 130px;
+                width: 3px;
+                left: -1px;
+                top: -25px;
+                background: red;
+            }
+            .clock .hand.second:after{
+                position: absolute;
+                content: '';
+                height: 45px;
+                width: 7px;
+                left: -3px;
+                top: -55px;
+                background: red;
+                border-radius: 3px;
+            }
+            /* .clock .hand.minute{
+                width: 7px;
+                height:40%;
+                background-color: blue;
+            } */
+            .clock .hand.minute{
+                position: absolute;
+                height: 1px;
+                width: 1px;
+                z-index: 4;
+                transform: rotate(240deg);
+            }
+            .clock .hand.minute:before{
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: 1px;
+                left: -3px;
+                top: -95px;
+                border-left: 3px solid transparent;
+                border-right: 3px solid transparent;
+                border-bottom: 70px solid #303030;
+                
+            }
+            .clock .hand.minute:after{
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: 3px;
+                left: -3px;
+                top: -25px;
+                border-left: 2px solid transparent;
+                border-right: 2px solid transparent;
+                border-top: 25px solid #303030;
+                
+            }
+            /* .clock .hand.hour{
+                width: 10px;
+                height:35%;
+                background-color:black;
+            } */
+            .clock .hand.hour{
+                position: absolute;
+                height: 6px;
+                width: 1px;
+                z-index: 3;
+                transform: rotate(120deg);
+            }
+            .clock .hand.hour:before{
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: 1px;
+                left: -3px;
+                top: -75px;
+                border-left: 3px solid transparent;
+                border-right: 3px solid transparent;
+                border-bottom: 55px solid #303030;
+                
+            }
+            .clock .hand.hour:after{
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: 3px;
+                left: -3px;
+                top: -20px;
+                border-left: 2px solid transparent;
+                border-right: 2px solid transparent;
+                border-top: 20px solid #303030;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="clock">     
+        <div class="hand hour"></div>
+        <div class="hand minute"></div>
+        <div class="hand second"></div>
+        <div class="number number1">1</div>
+        <div class="number number2">2</div>
+        <div class="number number3">3</div>
+        <div class="number number4">4</div>
+        <div class="number number5">5</div>
+        <div class="number number6">6</div>
+        <div class="number number7">7</div>
+        <div class="number number8">8</div>
+        <div class="number number9">9</div>
+        <div class="number number10">10</div>
+        <div class="number number11">11</div>
+        <div class="number number12">12</div>
+        </div>
+    </body>
+    <script>
+        // function (){
+        // var time=new Date();
+        // var hr = time.getHours();
+        // var min = time.getMinutes();
+        // var sec = time.getSeconds();
+        // alert(hr + "hr" + min + "min" + sec + "sec");
+        //  (function(){
+        //      var time = new date(),
+        //      second = time.getSeconds()/60*360,
+        //      minutes = time.getMinutes()/60*360+time.getSeconds()/60*6,
+        //      hour = time.getHours()/12*360 + time.getSeconds()/60*30,
+        //  })
+        const secClass=document.getElementsByClassName('hand second');
+        const minClass=document.getElementsByClassName('hand minute');
+        const hourClass=document.getElementsByClassName('hand hour');
+
+        setInterval(updateClock,1000);
+
+        function updateClock(){
+            let date = new Date();
+            let sec = date.getSeconds() / 60;
+            let min = (date.getMinutes() + sec) / 60;
+            let hour = (date.getHours() + min) / 12;
+
+            secClass.style.tranform = "rotate(" + (sec + 360) + "deg)";
+            minClass.style.tranform = "rotate(" + (min + 360) + "deg)";
+            hourClass.style.tranform = "rotate(" + (hour + 360) + "deg)";
+        }
+        updateClock();
+    </script>
+</html> 
