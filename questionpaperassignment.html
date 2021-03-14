@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #mainform {
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+            margin-left: 450px;
+            margin-top: 50px;
+        }
+
+        #btn {
+            width: 300px;
+            height: 50px;
+            margin-left: 100px;
+            margin-top: 200px;
+            font-size: 20px;
+            border: 2px solid green;
+        }
+
+        #form {
+            display: none;
+            width: 500px;
+            height: auto;
+            border: 2px solid black;
+            margin-left: 450px;
+            margin-top: 200px;
+        }
+
+        #question {
+            width: 300px;
+            height: 30px;
+            border: 2px solid;
+            border: 2px solid black;
+            margin-left: 50px;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        #text {
+            width: 200px;
+            height: 20px;
+            border: 2px solid;
+            border: 2px solid black;
+            margin-left: 50px;
+            margin-top: 20px;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        #addbtn {
+            width: 100px;
+            height: 40px;
+            border: 2px solid black;
+            font-size: 20px;
+        }
+
+        .text {
+            width: 100px;
+            height: 40px;
+            border: 2px solid black;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        #cancelbtn {
+            width: 100px;
+            height: 40px;
+            border: 2px solid black;
+            margin-left: 150px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #submitbtn {
+            width: 100px;
+            height: 40px;
+            border: 2px solid black;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainform">
+        <ol id="mainQuestion"></ol>
+        <input type="button" id="btn" value="Enter your Question" onclick="myFunction()" />
+    </div>
+    <div id="form">
+        <ol id="questionbox">
+            <input type="text" id="question" placeholder="Enter Your Question" /><br>
+        </ol>
+        <div id="optioninput">
+            <ol id="myUL" type="i">
+                <li>
+                    <input type="text" id="text" placeholder="Enter Your Option" />
+                    <input type="button" id="addbtn" value="Add" onclick="addingOption()" />
+                </li>
+            </ol>
+            <input type="button" id="cancelbtn" value="Cancel" onclick="cancelingOption()" />
+            <input type="button" id="submitbtn" value="Submit" onclick="submitingOption()" />
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            document.querySelector("#mainform").style.display = "none";
+            document.querySelector("#form").style.display = "block";
+        }
+        function addingOption() {
+            var maintext = document.querySelector("#text").value;
+            var input = document.createElement("input");
+            var input1 = document.createElement("input");
+            var list = document.createElement("li");
+            input1.appendChild(document.createTextNode(maintext));
+            input1.setAttribute("type", "text");
+            input1.setAttribute("id", "text");
+            input1.setAttribute("placeholder", "Enter Your Option");
+            input.appendChild(document.createTextNode(maintext));
+            input.setAttribute("type", "button");
+            input.setAttribute("value", "Delete");
+            input.setAttribute("class", "text");
+            input.setAttribute("onClick", "deleteOption()");
+            var textoutput = document.querySelector("#myUL").appendChild(list);
+            textoutput.appendChild(input1);
+            var buttonoutput = document.querySelector("#myUL").appendChild(list);
+            buttonoutput.appendChild(input);
+        }
+        function deleteOption() {
+            var text = document.querySelectorAll(".text");
+            for (var i = 0; i < text.length; i++) {
+                text[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+        function cancelingOption() {
+            document.querySelector("#form").style.display = "none";
+            document.querySelector("#mainform").style.display = "block";
+        }
+        function submitingOption() {
+            document.querySelector("#mainform").style.display = "block";
+            document.querySelector("#form").style.display = "none";
+            var mainform = document.querySelector("#mainQuestion");
+            var question = document.querySelector("#question").value;
+            var list = document.createElement("li");
+            list.append(question);
+            mainform.append(list);
+            var text = document.querySelectorAll("#text");
+            var order = document.createElement("ol");
+            for (var i = 0; i < text.length; i++) {
+                var list1 = document.createElement("li");
+                list1.setAttribute("type", "i");
+                list1.append(text[i].value);
+                order.append(list1);
+                mainform.append(order);
+                text[i].value = "";
+            }
+            document.querySelector("#question").value = "";
+        }
+    </script>
+</body>
+</html>
